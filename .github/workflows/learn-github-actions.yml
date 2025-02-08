@@ -1,17 +1,14 @@
-name: CI Pipeline  # Name of the workflow
-
-on:
-  push:            # Runs when code is pushed to the repository
-    branches:
-      - main       # Adjust this if you're using a different branch
-  pull_request:    # Runs on pull requests
-
+name: learn-github-actions
+run-name: ${{github.actor}} is learning GitHub Actions
+on: [push]
 jobs:
-  build:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Run a simple script
-        run: echo "Hello, GitHub Actions!"
+    check-bats-version: 
+        runs-on: ubuntu-latest 
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                    node-version: '14'
+            - run: npm install -g bats 
+            - run: bats -v
+            
