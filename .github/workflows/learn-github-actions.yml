@@ -1,0 +1,17 @@
+name: CI Pipeline  # Name of the workflow
+
+on:
+  push:            # Runs when code is pushed to the repository
+    branches:
+      - main       # Adjust this if you're using a different branch
+  pull_request:    # Runs on pull requests
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run a simple script
+        run: echo "Hello, GitHub Actions!"
